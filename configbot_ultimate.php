@@ -31,7 +31,7 @@ foreach ($sources as $url) {
     $html = curl_exec($curl);
     curl_close($curl);
 
-    preg_match_all('/(vmess|vless|trojan|ss):\/\/[a-zA-Z0-9@:%_\+.~#?&//=\-]+/', $html, $matches);
+    preg_match_all('#(vmess|vless|trojan|ss)://[^\s"\'<>]+#', $html, $matches);
     if (!empty($matches[0])) {
         $configs = array_merge($configs, $matches[0]);
     }
