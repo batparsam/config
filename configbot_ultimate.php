@@ -61,21 +61,22 @@ if (strpos($link, "vmess://") === 0) {
     $desc = "• سبک‌ترین پروتکل برای اینترنت ضعیف\n• مناسب برای گیم، پیام‌رسان، و استفاده روزمره";
 }
 
-$msg = "{$type} \n";
+$msg = "{$type}\n";
 $msg .= "━━━━━━━━━━━━━━━━━━━━━━\n";
 $msg .= "{$desc}\n";
 $msg .= "━━━━━━━━━━━━━━━━━━━━━━\n";
 $msg .= "⏰ زمان: {$time}   📅 تاریخ: {$date}\n";
-$msg .= "━━━━━━━━━━━━━━━━━━━━━━\n\n";
-$msg .= "🎯 <a href='{$link}'>کلیک برای دریافت و اتصال فوری</a>\n\n";
-$msg .= "💬 \\\"دسترسی یعنی زندگی. بدون محدودیت، بدون مرز.\\\"\\n";
+$msg .= "━━━━━━━━━━━━━━━━━━━━━━\n";
+$msg .= "🔑 کانفیگ:\n{$link}\n";
+$msg .= "━━━━━━━━━━━━━━━━━━━━━━\n";
+$msg .= "💬 \"دسترسی یعنی زندگی. بدون محدودیت، بدون مرز.\"\n";
 $msg .= "📡 کانال ما: {$channel}";
 
 $data = array(
     'chat_id' => $channel,
     'text' => $msg,
-    'parse_mode' => 'HTML',
-    'disable_web_page_preview' => false
+    'parse_mode' => 'Markdown',
+    'disable_web_page_preview' => true
 );
 
 $ch = curl_init("https://api.telegram.org/bot{$bot_token}/sendMessage");
@@ -85,5 +86,5 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_exec($ch);
 curl_close($ch);
 
-echo "✅ Config sent!";
+echo "✅ Config sent as plain text!";
 ?>
