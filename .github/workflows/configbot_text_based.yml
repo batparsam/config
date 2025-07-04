@@ -1,16 +1,10 @@
-name: Text-Based Config Bot
+name: Combined Proxy + Config Bots
 
 on:
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
-name: Secure Proxy Bot
 
-on:
-  schedule:
-    - cron: '*/5 * * * *'
-  workflow_dispatch:
-# Updated to trigger schedule
 jobs:
   run-secure-proxy:
     runs-on: ubuntu-latest
@@ -27,9 +21,8 @@ jobs:
         run: php proxybot_secure.php
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-          CHANNEL_ID: ${{ secrets.CHANNEL_ID }} 
+          CHANNEL_ID: ${{ secrets.CHANNEL_ID }}
 
-jobs:
   run-config-bot:
     runs-on: ubuntu-latest
     steps:
